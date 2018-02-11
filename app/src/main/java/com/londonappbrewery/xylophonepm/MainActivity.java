@@ -6,6 +6,7 @@ import android.media.SoundPool;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 
 import java.util.ArrayList;
@@ -20,22 +21,13 @@ public class MainActivity extends AppCompatActivity {
     private final int PRIORITY = 0;
     private final float NORMAL_PLAY_RATE = 1.0f;
 
-    private static final int[] BUTTON_IDS = {
-        R.id.c_key,
-        R.id.d_key,
-        R.id.e_key,
-        R.id.f_key,
-        R.id.g_key,
-        R.id.a_key,
-        R.id.b_key
-    };
     //----------------------------------------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Audio
+        // Audio SFX
         final MediaPlayer[] sfx_notes = {
             MediaPlayer.create(MainActivity.this, R.raw.note1_c),
             MediaPlayer.create(MainActivity.this, R.raw.note2_d),
@@ -46,7 +38,19 @@ public class MainActivity extends AppCompatActivity {
             MediaPlayer.create(MainActivity.this, R.raw.note7_b)
         };
 
+        // Button Identification
+        final int[] BUTTON_IDS = {
+                R.id.c_key,
+                R.id.d_key,
+                R.id.e_key,
+                R.id.f_key,
+                R.id.g_key,
+                R.id.a_key,
+                R.id.b_key
+        };
+
         // Button Config: For each stored ID, assign relevant playNote(sound).
+        final AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.8F); // Fade effect.
         ArrayList<Button> keys = new ArrayList<>();
 
         for(int i = 0; i < BUTTON_IDS.length; i++) {
@@ -55,18 +59,17 @@ public class MainActivity extends AppCompatActivity {
             Button button = (Button) findViewById(BUTTON_IDS[current_key]);
             button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-
+                    v.startAnimation(buttonClick);
                     playNote(sfx_notes[current_key]);
                 }
             });
-            System.out.println("Button made: " + button);
 
             keys.add(button);
         }
     }
     //----------------------------------------------------------------------------------------------
     private void playNote(MediaPlayer sfx) {
-        System.out.println("Key pressed: " + sfx);
+        System.out.println(this.getTaskId() + " pressed.");
         sfx.start();
     }
     //----------------------------------------------------------------------------------------------
