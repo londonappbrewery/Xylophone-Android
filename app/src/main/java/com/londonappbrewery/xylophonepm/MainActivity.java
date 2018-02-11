@@ -1,10 +1,14 @@
 package com.londonappbrewery.xylophonepm;
 
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,30 +20,54 @@ public class MainActivity extends AppCompatActivity {
     private final int PRIORITY = 0;
     private final float NORMAL_PLAY_RATE = 1.0f;
 
-    // TODO: Add member variables here
-    private int mCSoundId;
-    private int mDSoundId;
-    private int mESoundId;
-    private int mFSoundId;
-    private int mGSoundId;
-    private int mASoundId;
-    private int mBSoundId;
-
+    private static final int[] BUTTON_IDS = {
+        R.id.c_key,
+        R.id.d_key,
+        R.id.e_key,
+        R.id.f_key,
+        R.id.g_key,
+        R.id.a_key,
+        R.id.b_key
+    };
+    //----------------------------------------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // TODO: Create a new SoundPool
+        // Audio
+        final MediaPlayer[] sfx_notes = {
+            MediaPlayer.create(MainActivity.this, R.raw.note1_c),
+            MediaPlayer.create(MainActivity.this, R.raw.note2_d),
+            MediaPlayer.create(MainActivity.this, R.raw.note3_e),
+            MediaPlayer.create(MainActivity.this, R.raw.note4_f),
+            MediaPlayer.create(MainActivity.this, R.raw.note5_g),
+            MediaPlayer.create(MainActivity.this, R.raw.note6_a),
+            MediaPlayer.create(MainActivity.this, R.raw.note7_b)
+        };
 
+        // Button Config: For each stored ID, assign relevant playNote(sound).
+        ArrayList<Button> keys = new ArrayList<>();
 
-        // TODO: Load and get the IDs to identify the sounds
+        for(int i = 0; i < BUTTON_IDS.length; i++) {
+            final int current_key = i; // For inner use, but used generally for consistency.
 
+            Button button = (Button) findViewById(BUTTON_IDS[current_key]);
+            button.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
 
+                    playNote(sfx_notes[current_key]);
+                }
+            });
+            System.out.println("Button made: " + button);
+
+            keys.add(button);
+        }
     }
-
-    // TODO: Add the play methods triggered by the buttons
-
-
-
+    //----------------------------------------------------------------------------------------------
+    private void playNote(MediaPlayer sfx) {
+        System.out.println("Key pressed: " + sfx);
+        sfx.start();
+    }
+    //----------------------------------------------------------------------------------------------
 }
