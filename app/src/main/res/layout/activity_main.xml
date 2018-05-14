@@ -16,7 +16,8 @@
         android:id="@+id/c_key"
         android:background="@color/red"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:onClick="playc"/>
 
     <Button
         style="@style/KeyStyle"
@@ -25,7 +26,8 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:onClick="playd"/>
 
     <Button
         style="@style/KeyStyle"
@@ -34,7 +36,8 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:onClick="playe"/>
 
     <Button
         style="@style/KeyStyle"
@@ -43,7 +46,8 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:onClick="playf"/>
 
     <Button
         style="@style/KeyStyle"
@@ -52,7 +56,8 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:onClick="playg"/>
 
 
     <Button
@@ -62,7 +67,8 @@
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:onClick="playa"/>
 
     <Button
         style="@style/KeyStyle"
@@ -71,6 +77,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:onClick="playb"/>
 
 </LinearLayout>
